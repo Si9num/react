@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.card img {
+  height: 300px;
+  width: 280px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.card {
+  background-color: rgba(0, 255, 255, 0.616);
+  border-radius: 10px;
+  width: 280px;
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+.card p,
+.card h3 {
+  padding-left: 10px;
+}
+.card-container {
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  align-items: stretch;
+  align-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.form label {
+  float: left;
+}
+.form input {
+  margin-bottom: 10px;
+}
+.rad {
+  display: flex;
+  justify-content: space-around;
+}
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 30px;
+  margin-top: 10px;
+}
+.toggle input {
+  display: none;
+}
+.dot {
+  position: absolute;
+  cursor: pointer;
+  background: #b40bc4;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 30px;
+  transition: 0.4s;
+}
+.dot:before {
+  position: absolute;
+  content: '';
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.4s;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+input:checked + .dot {
+  background: #0d0441c7;
+}
+input:checked + .dot:before {
+  transform: translateX(60px);
+}
+.status-male {
+  position: absolute;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  color: white;
+  top: 6px;
+  left: 20px;
+  visibility: hidden;
+}
+.status-female {
+  position: absolute;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  color: white;
+  top: 6px;
+  left: 30px;
+}
