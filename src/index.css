@@ -2,16 +2,12 @@
   margin: 0;
   padding: 0;
 }
-.card img {
-  height: 300px;
-  width: 280px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
+
 .card {
   background-color: rgba(0, 255, 255, 0.616);
   border-radius: 10px;
   width: 280px;
+
   font-family: 'Open Sans', sans-serif;
   margin-left: 15px;
   margin-bottom: 15px;

@@ -1,6 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import './index.css';
 import { arrForCountry } from './country';
+import Card from './card';
+/* eslint-disable object-curly-newline */
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -9,6 +11,7 @@ const Form = () => {
   const [country, setCountry] = useState('Беларусь');
   const [check, setCheck] = useState(false);
   const [switcher, setSwitch] = useState(false);
+  const [card, setCard] = useState([]);
   const clear = () => {
     setName('');
     setSurname('');
@@ -16,8 +19,11 @@ const Form = () => {
     setCountry('Беларусь');
     setCheck(false);
   };
-  function handleSubmit(ev: { preventDefault: () => void }) {
+  function handleSubmit(ev: ChangeEvent<HTMLFormElement>) {
     ev.preventDefault();
+    const value = switcher ? 'male' : 'female';
+    setCard((state) => [...state, { name, surname, dob, country, value }]);
+
     clear();
   }
 
@@ -46,6 +52,7 @@ const Form = () => {
               id="sex"
               className="toggle-check"
               type="checkbox"
+              value={switcher ? 'female' : 'male'}
               checked={switcher}
               onChange={() => setSwitch((agree) => !agree)}
             />
@@ -86,7 +93,9 @@ const Form = () => {
           <input type="submit" className="send" value="send" />
         </form>
       </section>
-      <section className="card-container" id="card-container"></section>
+      <section className="card-container">
+        <Card card={card} />
+      </section>
     </div>
   );
 };
