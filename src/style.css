@@ -85,3 +85,47 @@ body {
 
   color: black;
 }
+.plug {
+  display: flex;
+  margin-top: 20%;
+  margin-left: 20%;
+  font-size: 30px;
+  font-family: 'Roboto';
+  justify-content: space-between;
+}
+.nav {
+  display: flex;
+  font-size: 20px;
+  font-family: 'Roboto';
+  list-style-type: none;
+}
+li {
+  list-style-type: none;
+}
+.list {
+  display: flex;
+}
+.list li {
+  margin-right: 30px;
+}
+a {
+  text-decoration: none;
+  color: rgb(9, 66, 172);
+}
+.home {
+  color: rgba(11, 116, 8, 0.678);
+}
+.anim-enter {
+  opacity: 0;
+}
+.anim-enter-active {
+  opacity: 1;
+  transition: 2000ms;
+}
+.anim-exit {
+  opacity: 1;
+}
+.anim-exit-active {
+  opacity: 0;
+  transition: 2000ms;
+}

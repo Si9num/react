@@ -12,6 +12,10 @@ module.exports = {
     filename: 'bundle.js',
     assetModuleFilename: 'assets/[name][ext]',
   },
+  mode: 'development',
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
