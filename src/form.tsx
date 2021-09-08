@@ -1,13 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Header from './components/header';
+// import Header from './components/header';
 import Res from './components/result';
 import About from './components/about';
 import Error from './components/page404';
@@ -23,10 +18,10 @@ import {
   SORT_BY_PUBL,
 } from './redux/action';
 import store from './redux/store';
+import HEADER from './components/header';
 
 const Form = () => {
   const [val, setValue] = useState('');
-
   const [page, setPage] = useState('1');
   const [size, setSize] = useState('10');
   const dispatch = useDispatch();
@@ -41,7 +36,7 @@ const Form = () => {
   const location = useLocation();
   return (
     <div>
-      <Header />
+      <HEADER />
       <TransitionGroup>
         <CSSTransition timeout={300} classNames="anim" key={location.key}>
           <div>
