@@ -5,37 +5,39 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Header from './header';
-import Res from './result';
-import About from './about';
-import Error from './page404';
-import Details from './details';
+import Header from './components/header';
+import Res from './components/result';
+import About from './components/about';
+import Error from './components/page404';
+import Details from './components/details';
+import getArticles from './redux/api';
 
-/* eslint-disable @typescript-eslint/comma-dangle */
+import {
+  VAL,
+  PAGE,
+  SIZE,
+  SORT_BY_REL,
+  SORT_BY_POP,
+  SORT_BY_PUBL,
+} from './redux/action';
+import store from './redux/store';
 
 const Form = () => {
   const [val, setValue] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [res, setRes] = useState([]);
-  const [sort, setSort] = useState('');
+
   const [page, setPage] = useState('1');
   const [size, setSize] = useState('10');
+  const dispatch = useDispatch();
 
   function handleSubmit(ev: ChangeEvent<HTMLFormElement>) {
     ev.preventDefault();
-    setLoading(true);
-    const getResp = async () => {
-      const response = await fetch(
-        `https://newsapi.org/v2/everything?q=${val}&from=2021-08-27&sortBy=${sort}&pageSize=${size}&page=${page}&apiKey=e8e992860fa74bfb88cc900a00bbace1`,
-      );
-      const data = await response.json();
-      setLoading(false);
-      console.log(data.articles);
-      setRes(data.articles);
-    };
-    getResp();
+    // setLoading(true);
+    setValue(ev.target.value);
+    dispatch(getArticles());
   }
+
   const location = useLocation();
   return (
     <div>
@@ -51,8 +53,11 @@ const Form = () => {
                       <input
                         type="text"
                         value={val}
-                        onChange={(ev) => setValue(ev.target.value)}
-                        disabled={loading}
+                        onChange={(ev) => {
+                          dispatch(VAL(ev.target.value));
+                          setValue(ev.target.value);
+                        }}
+                        disabled={store.getState().toolkit.loading}
                         required
                       />
 
@@ -61,9 +66,12 @@ const Form = () => {
                         <input
                           className="field"
                           type="text"
-                          value={page}
-                          onChange={(ev) => setPage(ev.target.value)}
-                          disabled={loading}
+                          value={store.getState().toolkit.page}
+                          onChange={(ev) => {
+                            dispatch(PAGE(ev.target.value));
+                            setPage(ev.target.value);
+                          }}
+                          disabled={store.getState().toolkit.loading}
                         />
                       </label>
                       <label>
@@ -71,16 +79,23 @@ const Form = () => {
                         <input
                           className="field"
                           type="text"
-                          value={size}
-                          onChange={(ev) => setSize(ev.target.value)}
-                          disabled={loading}
+                          value={store.getState().toolkit.size}
+                          onChange={(ev) => {
+                            dispatch(SIZE(ev.target.value));
+                            setSize(ev.target.value);
+                          }}
+                          disabled={store.getState().toolkit.loading}
                         />
                       </label>
                       <input
                         className="btn"
                         type="submit"
-                        value={loading ? 'loading' : 'search'}
-                        disabled={loading}
+                        value={
+                          store.getState().toolkit.loading
+                            ? 'loading'
+                            : 'search'
+                        }
+                        disabled={store.getState().toolkit.loading}
                       />
                     </div>
 
@@ -89,21 +104,23 @@ const Form = () => {
                       <button
                         className="btn"
                         value={'relevancy'}
-                        onClick={() => setSort('relevancy')}
+                        onClick={() => {
+                          dispatch(SORT_BY_REL(store.getState().toolkit.sort));
+                        }}
                       >
                         relevancy
                       </button>
                       <button
                         className="btn"
                         value={'popularity'}
-                        onClick={() => setSort('popularity')}
+                        onClick={() => dispatch(SORT_BY_POP('popularity'))}
                       >
                         popularity
                       </button>
                       <button
                         className="btn"
                         value={'publishedAt'}
-                        onClick={() => setSort('publishedAt')}
+                        onClick={() => dispatch(SORT_BY_PUBL('publishedAt'))}
                       >
                         publishedAt
                       </button>
@@ -111,7 +128,7 @@ const Form = () => {
                   </form>
                 </section>
                 <div className="wrap">
-                  <Res res={res} />
+                  <Res />
                 </div>
               </Route>
               <Route exact path="/about">
