@@ -7,7 +7,10 @@ const Card = ({ card }) => {
   return (
     <div>
       {card.map(
-        ({ name, surname, dob, country, value }: any, idx: React.Key) => {
+        (
+          { name, surname, dob, country, value }: HTMLFormElement,
+          idx: React.Key
+        ) => {
           return (
             <div className="card" key={idx}>
               <p>{name} </p>

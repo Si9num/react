@@ -1,10 +1,13 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import './index.css';
 import { arrForCountry } from './country';
 import Card from './card';
 /* eslint-disable object-curly-newline */
 
 const Form = () => {
+  const tog = useRef(null);
+  const male = useRef(null);
+  const female = useRef(null);
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [dob, setDob] = useState('');
@@ -18,6 +21,15 @@ const Form = () => {
     setDob('');
     setCountry('Беларусь');
     setCheck(false);
+  };
+  const toggle = () => {
+    if (tog.current.checked) {
+      male.current.style.visibility = 'visible';
+      female.current.style.visibility = 'hidden';
+    } else {
+      male.current.style.visibility = 'hidden';
+      female.current.style.visibility = 'visible';
+    }
   };
   function handleSubmit(ev: ChangeEvent<HTMLFormElement>) {
     ev.preventDefault();
@@ -54,11 +66,17 @@ const Form = () => {
               type="checkbox"
               value={switcher ? 'female' : 'male'}
               checked={switcher}
+              ref={tog}
               onChange={() => setSwitch((agree) => !agree)}
+              onClick={() => toggle()}
             />
             <span className="dot"></span>
-            <p className="status-male">Male</p>
-            <p className="status-female">Female</p>
+            <p ref={male} className="status-male">
+              Male
+            </p>
+            <p ref={female} className="status-female">
+              Female
+            </p>
           </label>
           <label htmlFor="dob">Date of birth</label>
           <label>
