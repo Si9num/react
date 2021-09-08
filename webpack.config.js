@@ -1,9 +1,13 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PrettierPlugin = require('prettier-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const IniWebpackPlugin = require('ini-webpack-plugin');
+const process = require('process');
+const dotenv = require('dotenv');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -42,6 +46,13 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new PrettierPlugin(),
     new ESLintPlugin({ extensions: ['ts', 'js', 'tsx'] }),
+    new IniWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed),
+    }),
     new CopyPlugin({
       patterns: [
         {
