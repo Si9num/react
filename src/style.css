@@ -1,0 +1,131 @@
+body {
+  background-color: #d9e6e5;
+}
+.wrap {
+  display: flex;
+  margin: 0 auto;
+  height: 100%;
+  width: 70%;
+  margin-top: 100px;
+}
+.text {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  margin-left: 10px;
+}
+.img {
+  height: 30%;
+  width: 30%;
+  margin-bottom: 20px;
+}
+.block {
+  display: flex;
+  margin-bottom: 100px;
+  border: 3px solid black;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fcfcfc;
+}
+.block:first-child {
+  margin-top: 130px;
+}
+.input {
+  border: 2px solid rgb(9, 66, 172);
+  width: 200px;
+  height: 150px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 30px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-evenly;
+  margin-bottom: 140px;
+}
+
+.field {
+  width: 20px;
+  margin-top: 10px;
+}
+.btn {
+  padding: 0;
+  border: none;
+  width: 85px;
+  height: 30px;
+  margin: 0 auto;
+  color: #fcfcfc;
+  background-color: rgb(9, 66, 172);
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btn:hover {
+  transition: 0.3s;
+  background-color: rgba(9, 66, 172, 0.438);
+}
+.btn:active {
+  transition: 0.3s;
+  background-color: rgb(3, 18, 46);
+}
+.btn:disabled {
+  background-color: rgba(3, 18, 46, 0.041);
+  color: black;
+}
+.sortBtns {
+  display: flex;
+  margin-top: -290px;
+  margin-left: 70%;
+  align-items: center;
+}
+.sortLab {
+  font-size: 26px;
+  font-family: 'Roboto';
+
+  color: black;
+}
+.plug {
+  display: flex;
+  margin-top: 20%;
+  margin-left: 20%;
+  font-size: 30px;
+  font-family: 'Roboto';
+  justify-content: space-between;
+}
+.nav {
+  display: flex;
+  font-size: 20px;
+  font-family: 'Roboto';
+  list-style-type: none;
+}
+li {
+  list-style-type: none;
+}
+.list {
+  display: flex;
+}
+.list li {
+  margin-right: 30px;
+}
+a {
+  text-decoration: none;
+  color: rgb(9, 66, 172);
+}
+.home {
+  color: rgba(11, 116, 8, 0.678);
+}
+.anim-enter {
+  opacity: 0;
+}
+.anim-enter-active {
+  opacity: 1;
+  transition: 2000ms;
+}
+.anim-exit {
+  opacity: 1;
+}
+.anim-exit-active {
+  opacity: 0;
+  transition: 2000ms;
+}
